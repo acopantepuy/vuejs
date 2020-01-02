@@ -28,8 +28,32 @@
     		Me puedes ver!
   		</p>
 	</div>
+	<div id="app-4">
+	  <h1>{{ titulo }}</h1>
+	  <ol>
+	    <li v-for="todo in todos">
+	      {{ todo.text }}
+	    </li>
+	  </ol>
+	</div>
+
+
 	<!-- Código JavaScript VUE -->	
 	<script>
+		
+		var app4 = new Vue({
+		  el: '#app-4',
+		  data: {
+		    titulo: '4 - Uso de v-for',
+		    todos: [
+		      { text: 'Learn JavaScript' },
+		      { text: 'Learn Vue' },
+		      { text: 'Build something awesome' }
+		    ]
+		  }
+		})
+
+
 		var app3 = new Vue({
 			el:'#app3',
 			data:{
