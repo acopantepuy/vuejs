@@ -28,6 +28,7 @@
     		Me puedes ver!
   		</p>
 	</div>
+	
 	<div id="app-4">
 	  <h1>{{ titulo }}</h1>
 	  <ol>
@@ -37,9 +38,67 @@
 	  </ol>
 	</div>
 
+	<div id="app5">
+		<h1>{{ titulo }}</h1>
+  		<p>{{ message }}</p>
+  		<button @click="reverseMessage">Reverse Message</button>
+	</div>
+
+	<div id="app6">
+		<h1>{{ titulo }}</h1>		
+	  	<p>{{ message }}</p>
+	  	<input v-model="message">
+	</div>
+
+	<div id="app7">
+      <h1>{{ titulo }}</h1>			
+	  <ol>
+	    <!-- Ahora le pasamos a cada todo-item with el objeto todo    -->
+	    <!-- que representa, para que su contenido pueda ser dinámico -->
+	    <todo-item v-for="item in groceryList" v-bind:key="item.id" v-bind:alimentos="item"></todo-item>
+	  </ol>
+	</div>	
+
 
 	<!-- Código JavaScript VUE -->	
 	<script>
+
+		Vue.component('todo-item', {
+		  props: ['alimentos'],
+		  template: '<li>{{ alimentos.text }}</li>'
+		})
+		var app7 = new Vue({
+		  el: '#app7',
+		  data: {
+		  	titulo:'7 - Utilizar de componentes',
+		    groceryList: [
+		      { text: 'Vegetables' },
+		      { text: 'Cheese' },
+		      { text: 'Whatever else humans are supposed to eat' }
+		    ]
+		  }
+		})
+
+		var app6 = new Vue({
+		  el: '#app6',
+		  data: {
+		  	titulo:'6 - Directiva v-model',
+		    message: 'Hello Vue!'
+		  }
+		})
+
+		var app5 = new Vue({
+		  el: '#app5',
+		  data: {
+		    titulo:'5 - Directiva v-on',
+		    message: 'Hello Vue.js!'
+		  },
+		  methods: {
+		    reverseMessage: function () {
+		      this.message = this.message.split('').reverse().join('')
+		    }
+		  }
+		})
 		
 		var app4 = new Vue({
 		  el: '#app-4',
@@ -52,7 +111,6 @@
 		    ]
 		  }
 		})
-
 
 		var app3 = new Vue({
 			el:'#app3',
